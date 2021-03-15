@@ -9,8 +9,6 @@ from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook, qtile
 from libqtile.widget import Spacer
 import arcobattery
-# TODO: Check what WINDOWNAME does
-from windowname import WindowName as CustomWindowName
 
 @lazy.function
 def window_to_prev_group(qtile):
