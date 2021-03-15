@@ -99,8 +99,6 @@ Plug 'vim-syntastic/syntastic'
 
 
 :call plug#end()
-
-
 """"""""""""""""""""""""""""""""""""""""""
 
 
