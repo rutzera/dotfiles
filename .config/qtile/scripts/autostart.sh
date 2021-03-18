@@ -37,7 +37,7 @@ run variety &
 run synology-drive &
 run caffeine-indicator &
 run nm-applet &
-run pamac-tray &
+#run pamac-tray &
 run xfce4-power-manager &
 numlockx on &
 blueberry-tray &

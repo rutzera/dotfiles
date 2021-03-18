@@ -71,9 +71,6 @@ def resize_down(qtile):
     resize(qtile, "j")
 
 
-
-
-
 ##### Keybindings
 #******************************************************************************
 #mod4 or mod = super key
@@ -314,6 +311,7 @@ workspaces = [
 # Window management in workspaces
 groups = []
 for workspace in workspaces:
+    #TODO: get matches to work
     matches = workspace["matches"] if "matches" in workspace else None
     groups.append(Group(workspace["name"], matches=matches))
     keys.append(
@@ -422,13 +420,13 @@ extension_defaults = widget_defaults.copy()
 
 # GroupBox = widget
 group_box_settings = {
-    "padding":5 ,
-    "borderwidth": 4,
+    "padding":3 ,
+    "borderwidth": 2,
     "active": colors[9],
     "inactive": colors[10],
     "disable_drag": False,
     "rounded": True,
-    "fontsize": 20,
+    "fontsize": 16,
     "highlight_color": colors[2],
     "block_highlight_text_color": colors[6],
     "highlight_method": "block",
@@ -466,26 +464,31 @@ group_box_settings = {
 
 ### Widget list
 #******************************************************************************
+
+#text = '',
+#text = '',
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
-           widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
-                    foreground = colors[2],
-                    background = colors[0],
-                    ),
-            widget.Image(
-                    filename = "~/.config/qtile/icons/qtilelogo.png",
-#                     mouse_callbacks = {'Button1': lambda qtile:
-                        # qtile.cmd_spawn('dmenu_run')},
-                     ),
             widget.TextBox(
-                    text="◢",
+                    text="  ",
                     foreground=colors[14],
                     background=colors[0],
-                    fontsize=75,
-                    padding=-7,
+                    fontsize=73,
+                    padding=-27,
+                    ),
+
+            # TODO: other image may resolve mouse callback + new image with
+            # darker background #242831
+            widget.Image(
+                    filename = "~/.config/qtile/icons/qtilelogo.png",
+                    mouse_callbacks = {'Button1': lambda:qtile.cmd_spawn("dmenu_run -c -l 15 -i -p 'Run :'")},
+                    ),
+            widget.Sep(
+                    linewidth = 0,
+                    #padding = 6,
+                    foreground = colors[2],
+                    background = colors[14],
                     ),
             widget.GroupBox(
                     font="Font Awesome 5 Free Solid",
@@ -497,7 +500,7 @@ def init_widgets_list():
                     foreground=colors[14],
                     background=colors[0],
                     fontsize=30,
-                    padding=0,
+                    padding=-7,
                     ),
     # Current Layout        
             widget.CurrentLayoutIcon(
@@ -505,32 +508,40 @@ def init_widgets_list():
                     foreground=colors[2],
                     background=colors[14],
                     padding=0,
-                    scale=0.9,
+                    scale=0.8,
                     ),
-            widget.TextBox(
-                    text="▉",
-                    foreground=colors[14],
-                    background=colors[0],
-                    fontsize=30,
-                    padding=-7,
-                    ),
+#            widget.TextBox(
+#                    text="▉",
+#                    foreground=colors[14],
+#                    background=colors[14],
+#                    fontsize=30,
+#                    padding=-7,
+#                    ),
 
             widget.TextBox(
-                    text="◣ ",
+                    text="  ",
                     foreground=colors[14],
                     background=colors[0],
-                    fontsize=90,
-                    padding=-9,
+                    fontsize=73,
+                    padding=-27,
                     ),
     # Window Name        
             widget.TextBox(
-                    text="◢",
+                    text="  ",
                     foreground=colors[14],
                     background=colors[0],
-                    fontsize=75,
-                    padding=-7,
+                    fontsize=73,
+                    padding=-27,
                     ),
+#            widget.TextBox(
+#                    text="◢",
+#                    foreground=colors[14],
+#                    background=colors[0],
+#                    fontsize=75,
+#                    padding=-7,
+#                    ),
             widget.TaskList(
+                    fontsize = 16,
                     borderwidth=0, 
                     highlight_method="block", 
                     background= colors[14],
@@ -543,35 +554,56 @@ def init_widgets_list():
                     mouse_callbacks = {"Button2": lambda: qtile.current_window.kill()}
                     ),
             widget.TextBox(
-                    text="◣ ",
+                    text="  ",
                     foreground=colors[14],
                     background=colors[0],
-                    fontsize=90,
-                    padding=-9,
-                    ),
-
-            widget.Spacer(),
-
-            widget.TextBox(
-                    text="◢",
-                    foreground=colors[14],
-                    background=colors[0],
-                    fontsize=75,
-                    padding=-7,
+                    fontsize=73,
+                    padding=-27,
                     ),
     # Systemtray    
+            widget.TextBox(
+                    text="  ",
+                    foreground=colors[14],
+                    background=colors[0],
+                    fontsize=73,
+                    padding=-27,
+                    ),
             widget.Systray(
-                    icon_size=22, 
+                    icon_size=16, 
                     background=colors[14], 
                     padding=10
                     ),
             widget.TextBox(
-                    text="◢",
-                    foreground=colors[0],
-                    background=colors[14],
-                    fontsize=75,
-                    padding=-7,
+                    text="  ",
+                    foreground=colors[14],
+                    background=colors[0],
+                    fontsize=73,
+                    padding=-27,
+                    ),    
+    # Update Checker    
+            widget.TextBox(
+                    text="  ",
+                    foreground=colors[14],
+                    background=colors[0],
+                    fontsize=73,
+                    padding=-27,
                     ),
+#            widget.TextBox(
+#                    text = " ⟳",
+#                    padding = 2,
+#                    foreground = colors[7],
+#                    background = colors[14],
+#                    fontsize = 18,
+#                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
+#                    ),
+              widget.CheckUpdates(
+                    update_interval = 1800,
+                    distro = "Arch_checkupdates",
+                    display_format = "{updates}",
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
+                    foregroune = colors[1],
+                    background = colors[14]
+                    ),            
     # Battery and Temperature        
             # do not activate in Virtualbox - will break qtile
             # battery option 1  ArcoLinux Horizontal icons do not forget to import arcobattery at the top
@@ -581,48 +613,55 @@ def init_widgets_list():
                     y_poss=2,
                     theme_path=home + "/.config/qtile/icons/battery_icons_horiz",
                     update_interval = 5,
-                    background = colors[0]
+                    background = colors[14]
                     ),
             widget.TextBox(
                     font="Font Awesome 5 Free Solid",
                     text="   ",
                     foreground=colors[1],
-                    background=colors[0],
+                    background=colors[14],
                     padding = 2,
-                    fontsize=20,
+                    fontsize=16,
                     ),
             widget.ThermalSensor(
                     foreground = colors[1],
                     foreground_alert = colors[3],
-                    background = colors[0],
+                    background = colors[14],
                     metric = True,
                     padding = 3,
                     threshold = 80
                     ),
     # Memory
-              widget.TextBox(
-                       font="Font Awesome 5 Free Solid",
-                       text="  ",
-                       foreground=colors[1],
-                       background=colors[0],
-                       padding = 0,
-                       fontsize=16
-                       ),
-              widget.Memory(
-                       font="Noto Sans",
-                       format = '{MemUsed}/{MemTotal}M',
-                       update_interval = 1,
-                       fontsize = 16,
-                       foreground = colors[1],
-                       background = colors[0],
-                      ),
-    # Volume-Widget    
             widget.TextBox(
-                    text="◢",
+                    font="Font Awesome 5 Free Solid",
+                    text="  ",
+                    foreground=colors[1],
+                    background=colors[14],
+                    padding = 0,
+                    fontsize=16
+                    ),
+            widget.Memory(
+                    font="Noto Sans",
+                    format = '{MemUsed}M',
+                    update_interval = 1,
+                    fontsize = 16,
+                    foreground = colors[1],
+                    background = colors[14],
+                    ),
+            widget.TextBox(
+                    text="  ",
                     foreground=colors[14],
                     background=colors[0],
-                    fontsize=75,
-                    padding=-7,
+                    fontsize=73,
+                    padding=-27,
+                    ),   
+    # Volume-Widget    
+            widget.TextBox(
+                    text="  ",
+                    foreground=colors[14],
+                    background=colors[0],
+                    fontsize=73,
+                    padding=-27,
                     ),
             widget.TextBox(
                     text=" ",
@@ -637,33 +676,47 @@ def init_widgets_list():
                     limit_max_volume="True",
                     mouse_callbacks={"Button3": lambda: qtile.cmd_spawn("pavucontrol")},
                     ),
+            widget.TextBox(
+                    text="  ",
+                    foreground=colors[14],
+                    background=colors[0],
+                    fontsize=73,
+                    padding=-27,
+                    ), 
     # Time 
             widget.TextBox(
-                    text="◢",
-                    foreground=colors[0],
-                    background=colors[14],
-                    fontsize=75,
-                    padding=-7,
+                    text="  ",
+                    foreground=colors[14],
+                    background=colors[0],
+                    fontsize=73,
+                    padding=-27,
                     ),
             widget.TextBox(
                     text=" ",
                     font="Font Awesome 5 Free Solid",
                     foreground=colors[4],  # fontsize=38
-                    background=colors[0],
+                    background=colors[14],
                     ),
             widget.Clock(
                     format="%H:%M",
                     foreground=colors[4],
-                    background=colors[0],
+                    background=colors[14],
                     # mouse_callbacks={"Button1": todays_date},
                     ),
-    # Day and Month        
             widget.TextBox(
-                    text="◢",
+                    text="  ",
                     foreground=colors[14],
                     background=colors[0],
-                    fontsize=75,
-                    padding=-7,
+                    fontsize=73,
+                    padding=-27,
+                    ),             
+    # Day and Month        
+            widget.TextBox(
+                    text="  ",
+                    foreground=colors[14],
+                    background=colors[0],
+                    fontsize=73,
+                    padding=-27,
                     ),
             widget.TextBox(
                     text=" ",
@@ -676,23 +729,37 @@ def init_widgets_list():
                     background=colors[14],
                     foreground=colors[5],
                     ),
+            widget.TextBox(
+                    text="  ",
+                    foreground=colors[14],
+                    background=colors[0],
+                    fontsize=73,
+                    padding=-27,
+                    ), 
     # Shutdown
             widget.TextBox(
-                    text="◢",
-                    foreground=colors[0],
-                    background=colors[14],
-                    fontsize=75,
-                    padding=-7,
+                    text="  ",
+                    foreground=colors[14],
+                    background=colors[0],
+                    fontsize=73,
+                    padding=-27,
                     ),
             widget.TextBox(
                     text="⏻",
                     foreground=colors[13],
-                    background=colors[0],
+                    background=colors[14],
                     font="Font Awesome 5 Free Solid",
                     fontsize=20,
-                    padding=20,
+                    padding=5,
                     mouse_callbacks={"Button1": lambda: qtile.cmd_spawn('arcolinux-logout')},
                     ),
+            widget.TextBox(
+                    text="  ",
+                    foreground=colors[14],
+                    background=colors[0],
+                    fontsize=73,
+                    padding=-27,
+                    ), 
     ]
 
     return widgets_list
@@ -715,8 +782,8 @@ widgets_screen2 = init_widgets_screen2()
 
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity = 0.9)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, opacity = 0.9))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=22, opacity = 0.9)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=22, opacity = 0.9))]
 screens = init_screens()
 
 
