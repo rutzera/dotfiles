@@ -8,8 +8,6 @@ from libqtile.config import Drag, Key, Screen, Group, Drag, Click, Rule, KeyChor
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook, qtile
 from libqtile.widget import Spacer
-from libqtile.lazy import lazy
-#from bsp import Bsp as CustomBsp
 import arcobattery
 
 @lazy.function
@@ -23,56 +21,6 @@ def window_to_next_group(qtile):
     if qtile.currentWindow is not None:
         i = qtile.groups.index(qtile.currentGroup)
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
-
-
-## Resize functions for bsp layout
-def resize(qtile, direction):
-    layout = qtile.current_layout
-    child = layout.current
-    parent = child.parent
-
-    while parent:
-        if child in parent.children:
-            layout_all = False
-
-            if (direction == "h" and parent.split_horizontal) or (
-                direction == "k" and not parent.split_horizontal
-            ):
-                parent.split_ratio = max(5, parent.split_ratio - layout.grow_amount)
-                layout_all = True
-            elif (direction == "l" and parent.split_horizontal) or (
-                direction == "j" and not parent.split_horizontal
-            ):
-                parent.split_ratio = min(95, parent.split_ratio + layout.grow_amount)
-                layout_all = True
-
-            if layout_all:
-                layout.group.layout_all()
-                break
-
-        child = parent
-        parent = child.parent
-
-
-@lazy.function
-def resize_left(qtile):
-    resize(qtile, "h")
-
-@lazy.function
-def resize_right(qtile):
-    resize(qtile, "l")
-
-@lazy.function
-def resize_up(qtile):
-    resize(qtile, "k")
-
-@lazy.function
-def resize_down(qtile):
-    resize(qtile, "j")
-
-
-
-
 
 ##### Keybindings
 #******************************************************************************
@@ -157,7 +105,6 @@ keys = [
     # Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
     # Key([], "XF86AudioStop", lazy.spawn("playerctl stop")),
 
-
 ### Window and Layout Controls
     # QTILE LAYOUT KEYS
     Key([mod], "f", 
@@ -172,131 +119,120 @@ keys = [
     Key([mod], "space", 
             lazy.next_layout()),
 
-    # CHANGE Monitor Focus
+
+    # CHANGE FOCUS
     Key([mod], "period", 
             lazy.next_screen()),
 	Key([mod], "comma", 
             lazy.prev_screen()),
-
-
-    ### Window controls
-    Key(
-        [mod], "j", 
-        lazy.layout.down(), 
-        desc="Move focus down in current stack pane"
-        ),
+#    Key([mod], "Up", 
+#            lazy.layout.up()),
+#    Key([mod], "Down", 
+#            lazy.layout.down()),
+#    Key([mod], "Left", 
+#            lazy.layout.left()),
+#    Key([mod], "Right", 
+#            lazy.layout.right()),
     Key([mod], "k", 
-        lazy.layout.up(), 
-        desc="Move focus up in current stack pane"
+            lazy.layout.up()),
+    Key([mod], "j", 
+            lazy.layout.down()),
+    Key([mod], "h", 
+            lazy.layout.left()),
+    Key([mod], "l", 
+            lazy.layout.right()),
+
+    # RESIZE UP, DOWN, LEFT, RIGHT
+#    Key([mod, "control"], "Right",
+#        lazy.layout.grow_right(),
+#        lazy.layout.grow(),
+#        lazy.layout.increase_ratio(),
+#        lazy.layout.delete(),
+#        ),
+#    Key([mod, "control"], "Left",
+#        lazy.layout.grow_left(),
+#        lazy.layout.shrink(),
+#        lazy.layout.decrease_ratio(),
+#        lazy.layout.add(),
+#        ),
+#    Key([mod, "control"], "Up",
+#        lazy.layout.grow_up(),
+#        lazy.layout.grow(),
+#        lazy.layout.decrease_nmaster(),
+#        ),
+#    Key([mod, "control"], "Down",
+#        lazy.layout.grow_down(),
+#        lazy.layout.shrink(),
+#        lazy.layout.increase_nmaster(),
+#        ),
+    Key([mod, "control"], "l",
+        lazy.layout.grow_right(),
+        lazy.layout.grow(),
+        lazy.layout.increase_ratio(),
+        lazy.layout.delete(),
         ),
-    Key(
-        [mod], "h",
-        lazy.layout.left(),
-        lazy.layout.next(),
-        desc="Move focus left in current stack pane",
+    Key([mod, "control"], "h",
+        lazy.layout.grow_left(),
+        lazy.layout.shrink(),
+        lazy.layout.decrease_ratio(),
+        lazy.layout.add(),
         ),
-    Key(
-        [mod], "l",
-        lazy.layout.right(),
-        lazy.layout.previous(),
-        desc="Move focus right in current stack pane",
+    Key([mod, "control"], "k",
+        lazy.layout.grow_up(),
+        lazy.layout.grow(),
+        lazy.layout.decrease_nmaster(),
         ),
-    # Move window in Stack
-    Key(
-        [mod, "shift"], "j",
-        lazy.layout.shuffle_down(),
-        desc="Move windows down in current stack",
+    Key([mod, "control"], "j",
+        lazy.layout.grow_down(),
+        lazy.layout.shrink(),
+        lazy.layout.increase_nmaster(),
         ),
-    Key(
-        [mod, "shift"],"k",
-        lazy.layout.shuffle_up(),
-        desc="Move windows up in current stack",
-        ),
-    Key(
-        [mod, "shift"], "h",
-        lazy.layout.shuffle_left(),
-        lazy.layout.swap_left(),
-        lazy.layout.client_to_previous(),
-        desc="Move windows left in current stack",
-        ),
-    Key(
-        [mod, "shift"], "l",
-        lazy.layout.shuffle_right(),
-        lazy.layout.swap_right(),
-        lazy.layout.client_to_next(),
-        desc="Move windows right in the current stack",
-        ),
-    # Flip layouts
-    Key([mod, "control"], "j", 
-        lazy.layout.flip_down(), 
-        desc="Flip layout down"
-        ),
-    Key([mod, "control"], "k", 
-        lazy.layout.flip_up(), 
-        desc="Flip layout up"
-        ),
-    Key([mod, "control"], "h", 
-        lazy.layout.flip_left(), 
-        desc="Flip layout left"
-        ),
-    Key([mod, "control"], "l", 
-        lazy.layout.flip_right(), 
-        desc="Flip layout right"
-        ),
-    # Resizing
-    Key([mod, "mod1"], "h",
-        resize_left,
-        desc="Resize window left",
-        ),
-    Key([mod, "mod1"], "l",
-        resize_right,
-        desc="Resize window Right",
-        ),
+
+# FLIP LAYOUT FOR MONADTALL/MONADWIDE
+    Key([mod, "control"], "f", 
+            lazy.layout.flip()),
+
+# FLIP LAYOUT FOR BSP
     Key([mod, "mod1"], "k", 
-        resize_up, 
-        desc="Resize windows upward"
-        ),
+            lazy.layout.flip_up()),
     Key([mod, "mod1"], "j", 
-        resize_down, 
-        desc="Resize windows downward"
-        ),
+            lazy.layout.flip_down()),
+    Key([mod, "mod1"], "l", 
+            lazy.layout.flip_right()),
+    Key([mod, "mod1"], "h", 
+            lazy.layout.flip_left()),
 
-    # TODO: check how these work
-    Key([mod], "n", 
-        lazy.layout.normalize(), 
-        desc="Normalize window size ratios"
-        ),
-    Key([mod], "m",
-        lazy.layout.maximize(),
-        desc="Toggle window between minimum and maximum sizes",
-        ),
-    Key([mod], "equal", 
-        lazy.layout.grow(), 
-        desc="Grow in monad tall"
-        ),
-    Key([mod], "minus", 
-        lazy.layout.shrink(), 
-        desc="Shrink in monad tall"
-        ),
+# MOVE WINDOWS UP OR DOWN BSP LAYOUT
+    Key([mod, "shift"], "k", 
+            lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "j", 
+            lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "h", 
+            lazy.layout.shuffle_left()),
+    Key([mod, "shift"], "l", 
+            lazy.layout.shuffle_right()),
 
-    ### Stack controls
-#    Key(
-#        [mod],
-#        "f",
-#        lazy.layout.rotate(),
-#        lazy.layout.flip(),
-#        desc="Switch which side main pane occupies {MonadTall}",
-#    ),
-    # Key(
-    #    [mod],
-    #    "f",
-    #    lazy.layout.next(),
-    #    desc="Switch window focus to other pane/s of stack",
-    # ),
-    Key([mod], "s",
-        lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-        ),
+# MOVE WINDOWS UP OR DOWN MONADTALL/MONADWIDE LAYOUT
+#    Key([mod, "shift"], "Up", 
+#            lazy.layout.shuffle_up()),
+#    Key([mod, "shift"], "Down", 
+#            lazy.layout.shuffle_down()),
+#    Key([mod, "shift"], "Left", 
+#            lazy.layout.swap_left()),
+#    Key([mod, "shift"], "Right", 
+#            lazy.layout.swap_right()),
+
+    ### IDEAS
+	# Key([mod, "mod1"], "l", lazy.spawn(myLaTeXEditor)),
+    # Key(["mod1"], "F3", lazy.spawn('xfce4-appfinder')),
+
+    # SCREENSHOTS
+    # Key([], "Print", lazy.spawn("scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
+    # Key([mod2], "Print", lazy.spawn('xfce4-screenshooter')),
+    # Key([mod2, "shift"], "Print", lazy.spawn('gnome-screenshot -i')),
+
+    # FUNCTION KEYS
+    # Key([], "F12", lazy.spawn('xfce4-terminal --drop-down')),
 ]
 
 
@@ -399,10 +335,10 @@ layout_theme = {
 }
 
 layouts = [
-    #layout.MonadTall(**layout_theme),
+    layout.MonadTall(**layout_theme),
     # layout.MonadWide(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
     # layout.Matrix(**layout_theme),
-    layout.Bsp(**layout_theme, fair = False),
+    layout.Bsp(**layout_theme),
     layout.Floating(**layout_theme),
     #layout.Zoomy(**layout_theme),
     # layout.RatioTile(**layout_theme),
@@ -727,7 +663,7 @@ mouse = [
          start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
 dgroups_key_binder = None
