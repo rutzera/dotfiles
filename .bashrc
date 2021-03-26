@@ -13,8 +13,8 @@
 [[ $- != *i* ]] && return
 
 export HISTCONTROL=ignoreboth:erasedups
-export EDITOR = 'vim'
-export VISUAL = 'vim'
+export EDITOR='vim'
+export VISUAL='vim'
 
 PS1='[\u@\h \W]\$ '
 
@@ -234,7 +234,7 @@ ex ()
 
 [[ -f ~/.bashrc-personal ]] && . ~/.bashrc-personal
 
-neofetch
+#neofetch
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

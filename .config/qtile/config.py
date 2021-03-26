@@ -482,7 +482,7 @@ def init_widgets_list():
             # darker background #242831
             widget.Image(
                     filename = "~/.config/qtile/icons/qtilelogo.png",
-                    mouse_callbacks = {'Button1': lambda:qtile.cmd_spawn("dmenu_run -c -l 15 -i -p 'Run :'")},
+                    mouse_callbacks = {'Button1': lambda:qtile.cmd_spawn("dmenu_run -l 15 -i -p 'Run :'")},
                     ),
             widget.Sep(
                     linewidth = 0,
@@ -889,6 +889,9 @@ floating_layout = layout.Floating(float_rules=[
     {'wname': 'Open File'},
     {'wname': 'pinentry'},
     {'wmclass': 'ssh-askpass'},
+    {'wmclass': 'Brave'},
+    {'wmclass': 'Pamac-manager'},
+    {'wmclass': 'Nm-connection-editor'},
 ], fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True
 
