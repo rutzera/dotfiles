@@ -23,25 +23,18 @@ $HOME/.config/polybar/launch.sh &
 #change your keyboard if you need it
 #setxkbmap -layout be
 
-#autostart ArcoLinux Welcome App
-#run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop &
-
-#Some ways to set your wallpaper besides variety or nitrogen
-#feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
-#start the conky to learn the shortcuts
-#(conky -c $HOME/.config/qtile/scripts/system-overview) &
-
 #IN BETA PHASE
 #start sxhkd to replace Qtile native key-bindings
 #run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 run sxhkd -c $HOME/.config/sxhkd/sxhkdrc &
 picom --config $HOME/.config/bspwm/picom.conf &
-$HOME/.config/polybar/launch.sh &
 
 #starting utility applications at boot time
 run variety &
 run synology-drive &
+killall "caffeine-indicator"
 run caffeine-indicator &
+killall "Cloud-drive-ui"
 run nm-applet &
 #run pamac-tray &
 run xfce4-power-manager &
