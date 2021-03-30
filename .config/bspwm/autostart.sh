@@ -34,7 +34,7 @@ run variety &
 run synology-drive &
 killall "caffeine-indicator"
 run caffeine-indicator &
-killall "Cloud-drive-ui"
+kill "Cloud-drive-ui"
 run nm-applet &
 #run pamac-tray &
 run xfce4-power-manager &
