@@ -7,7 +7,7 @@ function run {
   fi
 }
 
-$HOME/.config/polybar/launch.sh &
+#$HOME/.config/polybar/launch.sh &
 
 
 #Set your native resolution IF it does not exist in xrandr

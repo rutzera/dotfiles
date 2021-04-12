@@ -2,6 +2,7 @@
 
 sxhkd &
 sh ~/.config/polybar/launch.sh
+killall autostart.sh
 sh ~/.config/bspwm/autostart.sh
 
 # compositing and wallpaper 
@@ -13,12 +14,13 @@ picom --config $HOME/.config/bspwm/picom.conf
 
 
 #Single monitor
-bspc monitor -d 1 2 3 4 5 6
+bspc monitor -d 1 2 3 4 5 6 
+
+#bspc monitor DP1-3 -d DP1-3 
 #bspc monitor DP1-3 -d 4 5 6 
 
-bspwm_monitor
 ## This creates and names desktops for multiple monitors.
-#workspaces_multimonitor &
+xworkspaces_multimonitor &
 
 #Dual monitor
 #find out names with arandr or xrandr
@@ -32,29 +34,31 @@ bspwm_monitor
 
 
 
-
 #BSPWM configuration
-#bspc config border_radius       8
-bspc config border_width         2
-bspc config window_gap           4
-bspc config top_padding          30
-bspc config bottom_padding       2
-bspc config left_padding         2
-bspc config right_padding        2
-bspc config single_monocle       false
-#bspc config click_to_focus       true
-bspc config split_ratio          0.50
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
-#bspc config focus_by_distance    true
-bspc config focus_follows_pointer true
-#bspc config history_aware_focus  true
 bspc config pointer_modifier mod4
 bspc config pointer_action1 move
 bspc config pointer_action2 resize_side
 bspc config pointer_action3 resize_corner
+
+bspc config single_monocle       false
+bspc config borderless_monocle   false
+bspc config gapless_monocle      true
+#bspc config focus_by_distance    true
+#bspc config click_to_focus       true
+bspc config focus_follows_pointer true
+#bspc config history_aware_focus  true
 bspc config remove_disabled_monitors true
 bspc config merge_overlapping_monitors true
+
+
+bspc config border_radius        8
+bspc config border_width         2
+bspc config window_gap           2
+bspc config top_padding          30
+bspc config bottom_padding       2
+bspc config left_padding         2
+bspc config right_padding        2
+bspc config split_ratio          0.50
 
 #BSPWM coloring
 bspc config normal_border_color		"#4c566a"
@@ -67,7 +71,6 @@ bspc config presel_feedback_color	"#5e81ac"
 
 
 #Fullscreen applications
-bspc rule -a inkscape state=fullscreen
 bspc rule -a Spotify state=fullscreen
 bspc rule -a Vlc state=fullscreen
 bspc rule -a VirtualBox Manager state=fullscreen
@@ -75,7 +78,7 @@ bspc rule -a VirtualBox Machine state=fullscreen
 #bspc rule -a Gimp state=fullscreen
 
 #Floating applications
-bspc rule -a matlab state=floating
+bspc rule -a Matlab state=floating
 bspc rule -a Arandr state=floating
 bspc rule -a Arcolinux-tweak-tool.py state=floating
 bspc rule -a Arcolinux-welcome-app.py state=floating
@@ -87,7 +90,7 @@ bspc rule -a Galculator state=floating
 #bspc rule -a Gpick state=floating sticky=on
 #bspc rule -a Nitrogen state=floating
 bspc rule -a Oblogout state=floating
-#bspc rule -a Pavucontrol state=floating sticky=on
+bspc rule -a Pavucontrol state=floating sticky=on
 #bspc rule -a Peek state=floating
 #bspc rule -a rofi state=floating sticky=on
 #bspc rule -a Skype state=floating
