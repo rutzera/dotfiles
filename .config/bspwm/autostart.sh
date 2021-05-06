@@ -13,7 +13,7 @@ function run {
 
 #run sxhkd -c $HOME/.config/sxhkd/sxhkdrc &
 #$HOME/.config/polybar/launch.sh &
-#picom --config $HOME/.config/bspwm/picom.conf &
+picom --config $HOME/.config/bspwm/picom.conf &
 
 #starting utility applications at boot time
 run variety &

@@ -37,8 +37,6 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-
-
 " Set status line display
 set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
 set showmode
@@ -80,7 +78,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " rainbowcolored  bracket matching 
 Plug 'frazrepo/vim-rainbow'
 
-"(d)l ightline
+"(d) ightline
 Plug 'itchyny/lightline.vim'
 "(e) bracket matching
 Plug 'jiangmiao/auto-pairs'
