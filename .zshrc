@@ -112,6 +112,8 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
+# nim 
+alias vim='nvim'
 #list
 alias ls='ls --color=auto'
 alias la='ls -a'
@@ -275,10 +277,9 @@ ex ()
 #in there. They will not be overwritten by skel.
 
 [[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # neofetch
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
