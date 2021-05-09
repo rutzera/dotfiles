@@ -21,7 +21,7 @@ set noswapfile "disable swap files
 "set colorscheme='wombat256mod' "Change color scheme.
 set noerrorbells "Disable beep on errors.
 set title "Set the window’s title, reflecting the file currently being edited.
-set mouse=a "enable ouse usage (all mode)
+set mouse=a "enable mouse usage (all mode)
 set textwidth=79
 set laststatus=2 "set statusbar
 

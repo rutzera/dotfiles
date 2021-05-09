@@ -36,16 +36,6 @@ alias ll='ls -la'
 alias l='ls'
 alias l.="ls -A | egrep '^\.'"
 
-#fix obvious typo's
-alias cd..='cd ..'
-alias pdw="pwd"
-alias udpate='sudo pacman -Syyu'
-alias upate='sudo pacman -Syyu'
-alias updte='sudo pacman -Syyu'
-alias updqte='sudo pacman -Syyu'
-alias upqll="yay -Syu --noconfirm"
-alias upal="yay -Syu --noconfirm"
-
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -62,7 +52,7 @@ alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
 alias rmlogoutlock="sudo rm /tmp/arcologout.lock"
 
 #free
-alias free="free -mt"
+alias free="free -mth"
 
 #use all cores
 alias uac="sh ~/.bin/main/000*"
@@ -171,15 +161,15 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
-#nano for important configuration files
+#vim for important configuration files
 #know what you do in these files
-alias nlightdm="sudo nano /etc/lightdm/lightdm.conf"
-alias npacman="sudo nano /etc/pacman.conf"
-alias ngrub="sudo nano /etc/default/grub"
-alias nconfgrub="sudo nano /boot/grub/grub.cfg"
-alias nmkinitcpio="sudo nano /etc/mkinitcpio.conf"
-alias nmirrorlist="sudo nano /etc/pacman.d/mirrorlist"
-alias nsddm="sudo nano /etc/sddm.conf"
+alias nlightdm="sudo vim /etc/lightdm/lightdm.conf"
+alias npacman="sudo vim /etc/pacman.conf"
+alias ngrub="sudo vim /etc/default/grub"
+alias nconfgrub="sudo vim /boot/grub/grub.cfg"
+alias nmkinitcpio="sudo vim /etc/mkinitcpio.conf"
+alias nmirrorlist="sudo vim /etc/pacman.d/mirrorlist"
+alias nsddm="sudo vim /etc/sddm.conf"
 alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
 
 #gpg
