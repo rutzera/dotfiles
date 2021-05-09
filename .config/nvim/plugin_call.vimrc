@@ -20,6 +20,11 @@ Plug 'junegunn/fzf.vim'
 
 "nerdTree
 Plug 'scrooloose/nerdTree'
+"nerdCommennter
+Plug 'preservim/nerdcommenter'
+
+"vim-fugitive
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 

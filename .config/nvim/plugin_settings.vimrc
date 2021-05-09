@@ -1,4 +1,4 @@
-filetype plugin indent on
+filetype plugin on
 "Plugin Settings
 """"""""""""""""""""""""""""""""""
 colorscheme gruvbox
@@ -13,4 +13,5 @@ let g:lightline = {
       \   'filename': '%F',},}
 
 " coc-highlight - similar words
-autocmd CursorHold * silent call CocActionAsync('highlight') 
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
