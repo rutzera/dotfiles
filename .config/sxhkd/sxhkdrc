@@ -36,6 +36,10 @@ super + shift + Escape
     xkill
 
 # launch software
+# super + f
+    # termite -e ranger
+# super + {w,t,v}
+    # {brave,thunderbird,pavucontrol}
 super + {w,f,t,v}
     {brave,nemo,thunderbird,pavucontrol}
 

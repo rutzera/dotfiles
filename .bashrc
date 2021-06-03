@@ -226,6 +226,8 @@ ex ()
 
 #neofetch
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/adrian/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -241,4 +243,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash

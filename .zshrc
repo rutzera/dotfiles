@@ -80,6 +80,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+export EDITOR=nvim
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -224,15 +225,15 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
-#vim for important configuration files
+#nvim for important configuration files
 #know what you do in these files
-alias nlightdm="sudo vim /etc/lightdm/lightdm.conf"
-alias npacman="sudo vim /etc/pacman.conf"
-alias ngrub="sudo vim /etc/default/grub"
-alias nconfgrub="sudo vim /boot/grub/grub.cfg"
-alias nmkinitcpio="sudo vim /etc/mkinitcpio.conf"
-alias nmirrorlist="sudo vim /etc/pacman.d/mirrorlist"
-alias nsddm="sudo vim /etc/sddm.conf"
+alias nlightdm="sudo nvim /etc/lightdm/lightdm.conf"
+alias npacman="sudo nvim /etc/pacman.conf"
+alias ngrub="sudo nvim /etc/default/grub"
+alias nconfgrub="sudo nvim /boot/grub/grub.cfg"
+alias nmkinitcpio="sudo nvim /etc/mkinitcpio.conf"
+alias nmirrorlist="sudo nvim /etc/pacman.d/mirrorlist"
+alias nsddm="sudo nvim /etc/sddm.conf"
 alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
 
 #maintenance
@@ -281,6 +282,14 @@ ex ()
 
 # neofetch
 
+# alias for bar repository 
+alias dotfiles='/usr/bin/git --git-dir=/home/adrian/.dotfiles/ --work-tree=/home/adrian'
+
+# fzf options 
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+# TODO: hinclude hidden file search
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/adrian/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -296,4 +305,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-alias dotfiles='/usr/bin/git --git-dir=/home/adrian/.dotfiles/ --work-tree=/home/adrian'

@@ -14,6 +14,7 @@ function run {
 #run sxhkd -c $HOME/.config/sxhkd/sxhkdrc &
 #$HOME/.config/polybar/launch.sh &
 picom --config $HOME/.config/bspwm/picom.conf &
+# $HOME/.config/bspwm/bspwm_monitor &
 
 #starting utility applications at boot time
 run variety &
