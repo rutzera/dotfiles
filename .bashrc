@@ -243,3 +243,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+alias luamake=/home/adrian/lua-language-server/3rd/luamake/luamake
