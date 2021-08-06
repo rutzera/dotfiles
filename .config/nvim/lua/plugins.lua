@@ -39,7 +39,6 @@ return require("packer").startup(function(use)
     -- Autocomplete
     use {"hrsh7th/nvim-compe"}
     use {"windwp/nvim-autopairs"}
-    
 
     --Snippets
     use { 'hrsh7th/vim-vsnip' }
@@ -50,11 +49,12 @@ return require("packer").startup(function(use)
     use {'nvim-lua/plenary.nvim'}
     use {'nvim-lua/popup.nvim'}
     use {'nvim-telescope/telescope.nvim'}
-    
-    -- which-key pop-up
+
+    -- fhich-key pop-up
     use {
         "folke/which-key.nvim",
-        config = function() require("which-key").setup {} end
+        config = function()
+          require("which-key").setup {} end
     }
 
     -- color scheme and icons
@@ -64,13 +64,12 @@ return require("packer").startup(function(use)
     use {
         'glepnir/galaxyline.nvim',
         branch = 'main',
-        config = function() require 'statusline' end
+        config = function() require 'config.statusline' end
     }
 
     -- IDE
     use{'jalvesaq/Nvim-R'}
     use{'tpope/vim-commentary'}
-
+    use "lukas-reineke/indent-blankline.nvim"
 
 end)
-

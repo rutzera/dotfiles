@@ -1,19 +1,12 @@
--- Sensible defaults
-require('settings')
+-- initialize nvim modules
+local nvim_modules = {
+    'settings',
+    'keymappings',
+    'plugins',
+    'lang',
+    'config'
+}
 
--- Key mappings
-require('keymappings')
-
--- Install Plufings
-require('plugins')
-
--- LSP 
-require('lang')
-
--- cofigs 
-require('config')
-
--- status line
--- require('statusline')
--- DAP (Debug Application Protocol)
--- require('dbg')
+for i = 1, #nvim_modules, 1 do
+    pcall(require, nvim_modules[i])
+end

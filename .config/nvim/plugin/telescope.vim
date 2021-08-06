@@ -6,9 +6,6 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
-
-
-
 " "nnoremap <silent> <leader>ff :DashboardFindFile<CR>
 " nnoremap <silent> <leader>ff :Telescope git_files<CR>
 " nnoremap <silent> <leader>fg :Telescope live_grep<cr>

@@ -135,7 +135,6 @@ require'lspconfig'.sumneko_lua.setup {
     }
 }
 
-
 -- symbols-outline.nvim
 vim.g.symbols_outline = {
     highlight_hovered_item = true,

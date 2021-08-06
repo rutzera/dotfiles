@@ -29,9 +29,9 @@ require('telescope').setup {
 -- require('telescope').load_extension('media_files')
 
 -- local actions = require('telescope.actions')
--- 
+--
 -- local M = {}
--- 
+--
 -- -- M.search_dotfiles = function()
 -- --     require("telescope.builtin").find_files(
 -- --         {
@@ -39,7 +39,7 @@ require('telescope').setup {
 -- --             cwd = "$HOME/workspace/development/alpha2phi/dotfiles/"
 -- --         })
 -- -- end
--- -- 
+-- --
 -- -- M.switch_projects = function()
 -- --     require("telescope.builtin").find_files(
 -- --         {
@@ -47,7 +47,7 @@ require('telescope').setup {
 -- --             cwd = "$HOME/workspace/development/"
 -- --         })
 -- -- end
--- 
+--
 -- M.git_branches = function()
 --     require("telescope.builtin").git_branches(
 --         {
@@ -58,5 +58,5 @@ require('telescope').setup {
 --             end
 --         })
 -- end
--- 
+--
 -- return M
