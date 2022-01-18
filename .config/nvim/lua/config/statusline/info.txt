@@ -1,0 +1,44 @@
+see
+https://github.com/glepnir/galaxyline.nvim/issues/12#issuecomment-847929313
+for more info.
+thanks to lcrockett 
+
+make sure the right color scheme is installed!
+
+left
+    VIM mode indicator
+        colors change depending on mode
+        letter changes depending on mode
+    Window number the currently opened buffer resides in
+    indicator :: paste mode
+    indicator :: spelling check
+    indicator (multi-use) :: trailing whitespace | mixed indent (spaces+tabs)
+    git branch (if opened buffer resides in git directory, otherwise show dots)
+    branch name of current checked out git branch
+    git status (only shows up when opened buffer resides in git repository)
+        git additions (green if != 0)
+        git changes (yellow / orange if != 0)
+        git deletions (red if != 0)
+middle
+    file icon
+        changes colour depending on :: modified, readonly, modifiable
+    file name
+        shows full absolute path (excluding home folder component) when screen width > 150 lines
+        shows file name when screen width < 150 lines
+        shows a hyphen if screen width == 0
+right
+    LSP status (only shows up when opened buffer is attached to LSP client)
+        diagnostic error (red if != 0)
+        diagnostic warning (yellow / orange if != 0)
+        diagnostic information (blue if != 0)
+        diagnostic hint (green if != 0)
+    LSP details (if opened buffer is attached to LSP client, otherwise show dots)
+        number of LSP clients attached to buffer
+        LSP client name (if there are +1 clients attached to the buffer, it picks the name of the LSP client with the lowest LSP client ID, or first -defined- LSP client. Therefore; LSP client order matters)
+    file size
+    vim.bo.tabstop value or "indent level" of opened buffer
+    file type of opened buffer
+        if opened buffer is not utf-8 encoded the filetype name lights up with a slightly off colour
+    file format of opened buffer, depicted with an icon (dos, mac, unix)
+    position of cursor in opened buffer shown as line:column
+    position of cursor in opened buffer shown as a percentage

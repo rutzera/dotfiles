@@ -1,0 +1,16 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+      "python", "markdown", "json", "r"
+  ],
+
+  // python config
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+
+  "snippets.ultisnips.directories":
+  [
+    "UltiSnips",
+    "~/.config/nvim/utils/snips"
+  ]
+
+}
