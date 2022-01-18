@@ -113,7 +113,7 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
-# nim 
+# nim
 alias vim='nvim'
 #list
 alias ls='ls --color=auto'
@@ -282,10 +282,10 @@ ex ()
 
 # neofetch
 
-# alias for bar repository 
+# alias for bar repository
 alias dotfiles='/usr/bin/git --git-dir=/home/adrian/.dotfiles/ --work-tree=/home/adrian'
 
-# fzf options 
+# fzf options
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # TODO: hinclude hidden file search
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
@@ -305,3 +305,11 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/path.zsh.inc' ]; then . '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/completion.zsh.inc'; fi

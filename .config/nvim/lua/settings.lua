@@ -29,6 +29,7 @@ utils.opt('o','background', 'dark')
 -- Global options
 -----------------------------------------------------------
 utils.opt('o', 'encoding', 'UTF-8')
+utils.opt('o', 'autochdir', true)
 utils.opt('o', 'backup', false)
 utils.opt('o', 'compatible', false)
 utils.opt('o', 'mouse', 'a')                 -- enable mouse support
@@ -124,6 +125,10 @@ cmd([[
 -- 8 spaces for Go files
 cmd([[autocmd FileType go setlocal shiftwidth=8 tabstop=8]])
 
+-- NERDtree
+-- Exit Vim if NERDTree is the only window remaining in the only tab.
+cmd([[autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+]])
 
 ------------------------------------
 -- Auto format

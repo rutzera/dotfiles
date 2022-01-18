@@ -68,6 +68,7 @@ return require("packer").startup(function(use)
     }
 
     -- IDE
+    use{'scrooloose/nerdtree'}
     use{'jalvesaq/Nvim-R'}
     use{'tpope/vim-commentary'}
     use "lukas-reineke/indent-blankline.nvim"

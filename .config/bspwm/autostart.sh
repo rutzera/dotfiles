@@ -33,5 +33,5 @@ blueberry-tray &
 # LAPTOP settings
 # laptop trackpad settings
 libinput-gestures-setup start &
-# handling external desktop 
-sleep 0.5s && autorandr --change &
+# handling external desktop
+# sleep 0.5s && autorandr --change &

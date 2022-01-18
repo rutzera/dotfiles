@@ -10,6 +10,13 @@ utils.map('n', '<leader>ss', ':w<cr>')
 -- Shortcut for reloading init.lua
 utils.map('n', '<Leader>sp', ':luafile $HOME/.config/nvim/init.lua<cr>', { silent = true })
 
+-- NERDtree
+utils.map('n', '<leader>n', ':NERDTreeFocus<CR>', {noremap =true})
+utils.map('n', '<C-n>', ':NERDTree<CR>', {noremap =true})
+utils.map('n', '<C-t>', ':NERDTreeToggle<CR>', {noremap =true})
+utils.map('n', '<C-f>', ':NERDTreeFind<CR>', {noremap =true})
+
+
 -- better window movement
 utils.map('n', '<C-j>', '<C-w>j', {silent = true})
 utils.map('n', '<C-h>', '<C-w>h', {silent = true})

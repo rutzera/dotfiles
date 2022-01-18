@@ -15,7 +15,7 @@ super + {_,shift + }q
 # =================== Application launcher =====================
 # launch terminal
 super + Return
-   termite -e zsh
+   alacritty -e zsh
 
 # program launcher
 super + d
@@ -39,7 +39,7 @@ super + shift + Escape
 # super + {w,t,v}
     # {brave,thunderbird,pavucontrol}
 super + {w,f,t,v}
-    {brave,nemo,thunderbird,pavucontrol}
+    {firefox,nemo,thunderbird,pavucontrol}
 
 super + alt + {a,p}
     {xfce4-appfinder, pamac-manager}
@@ -74,7 +74,7 @@ super + alt + {a,p}
 
 # full screenshot, selection area, full in 5 seconds
 Print + {_,shift,alt}
-    flameshot {full -p,gui -p,full -d 5000 -p} /home/mahmoud/Screenshots
+    flameshot {full -p,gui -p,full -d 5000 -p} /home/adrian/Pictures/Screenshots
 
 
 # =================== WINDOW CONTROL =====================

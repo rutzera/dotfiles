@@ -92,10 +92,16 @@ capabilities.textDocument.codeAction = {
 capabilities.textDocument.completion.completionItem.snippetSupport = true;
 
 -- LSPs
-local servers = {"pyright", "vimls", "r_language_server", "sumneko_lua"}
+local servers = {"sumneko_lua", "pyright", "vimls", "r_language_server", "sqlls"}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {capabilities = capabilities, on_attach = on_attach}
 end
+
+-- SQL server
+require'lspconfig'.sqlls.setup{
+  cmd = {'sql-language-server', 'up', '--method', 'stdio'}
+}
+
 
 -- Lua LSP
 local sumneko_root_path = ""
@@ -134,6 +140,7 @@ require'lspconfig'.sumneko_lua.setup {
         }
     }
 }
+
 
 -- symbols-outline.nvim
 vim.g.symbols_outline = {
