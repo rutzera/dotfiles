@@ -58,13 +58,24 @@ return require("packer").startup(function(use)
     }
 
     -- color scheme and icons
+    use {
+        'navarasu/onedark.nvim',
+      require('onedark').setup {
+         style = 'darker'
+        },
+        require('onedark').load()
+    }
     use {'sainnhe/gruvbox-material'}
     use {'kyazdani42/nvim-web-devicons'}
     -- statusline
+    -- use {
+    --     'glepnir/galaxyline.nvim',
+    --     branch = 'main',
+    --     config = function() require 'config.statusline' end
+    -- }
     use {
-        'glepnir/galaxyline.nvim',
-        branch = 'main',
-        config = function() require 'config.statusline' end
+        'nvim-lualine/lualine.nvim',
+        -- requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
     -- IDE

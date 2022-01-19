@@ -22,8 +22,10 @@ cmd 'filetype plugin indent on'              -- needed for some plugins
 
 -- colorscheme
 utils.opt('o', 'termguicolors', true)
-cmd 'colorscheme gruvbox-material'
-utils.opt('o','background', 'dark')
+-- cmd 'colorscheme gruvbox-material'
+cmd 'colorscheme onedark'
+
+-- utils.opt('o','background', 'dark')
 
 -----------------------------------------------------------
 -- Global options
