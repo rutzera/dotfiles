@@ -226,7 +226,6 @@ ex ()
 
 #neofetch
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

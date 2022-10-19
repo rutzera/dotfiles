@@ -7,7 +7,7 @@
 #installation via yay -S oh-my-zsh-git
 export ZSH=/usr/share/oh-my-zsh/
 # export PATH="/home/adrian/miniconda3/bin:$PATH"  # commented out by conda initialize
-
+export PATH=$HOME/.config/rofi/scripts:$PATH
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -278,7 +278,6 @@ ex ()
 #in there. They will not be overwritten by skel.
 
 [[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # neofetch
 
@@ -305,11 +304,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# gcloud shell command completion
+# source /home/adrian/installs/google-cloud-sdk/pkg/google-cloud-sdk/opt/google-cloud-sdk/completion.bash.inc
+# gcloud google cloud sdk command line tools
+# source /home/adrian/installs/google-cloud-sdk/pkg/google-cloud-sdk/opt/google-cloud-sdk/path.bash.inc
 
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/path.zsh.inc' ]; then . '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/completion.zsh.inc'; fi
+# old
+# # The next line updates PATH for the Google Cloud SDK.
+# if [ -f '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/path.zsh.inc' ]; then . '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/path.zsh.inc'; fi
+# # The next line enables shell command completion for gcloud.
+# if [ -f '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/completion.zsh.inc'; fi

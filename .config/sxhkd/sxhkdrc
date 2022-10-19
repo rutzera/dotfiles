@@ -19,16 +19,16 @@ super + Return
 
 # program launcher
 super + d
-   rofi -show drun
+    /home/adrian/.config/rofi/launchers/type-3/launcher.sh
 
 # Tab menu
 alt + Tab
     rofi -show window
 
-#arcolinux-logout
+# rofi-powermenu
 super + x
-    arcolinux-logout
-
+    /home/adrian/.config/rofi/powermenu/type-4/powermenu.sh
+    
 #Xkill
 super + shift + Escape
     xkill
@@ -78,6 +78,10 @@ Print + {_,shift,alt}
 
 
 # =================== WINDOW CONTROL =====================
+# switch between keyboard laylouts (language)
+alt + shift + Tab
+    {setxkbmap -model pc104 -layout ch -variant de_nodeadkeys, setxkbmap -model pc86 -layout us -variant intl}
+    /* {setxkbmap -model pc104 -layout ch -variant de_nodeadkeys, setxkbmap -model pc86 -layout us2 -variant intl2} */
 
 ##### Move/Resize Window ######
 # Focus/swap windows by direction
@@ -188,7 +192,7 @@ XF86AudioMute
 
 # brightness keys
 XF86MonBrightness{Up,Down}
-	xbacklight -{inc,dec} 10
+	xbacklight -{inc,dec} 5
 
 # next, previous, play-pause toggle
 XF86Audio{Next,Prev,Play}
