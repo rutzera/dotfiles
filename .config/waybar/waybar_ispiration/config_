@@ -1,0 +1,79 @@
+{
+    "position": "top",
+    "height": 26,
+    "modules-left": ["sway/workspaces"],
+    "modules-right": ["network", "pulseaudio", "battery", "custom/date", "memory", "cpu", "clock", "custom/power"],
+
+// Modules configuration
+
+	"sway/workspaces": {
+		"disable-scroll": false,
+		"all-outputs": true,
+		"format": "{icon}",
+        "format-icons": {
+            "default": "",
+            "urgent": "",
+            "focused": ""
+            }
+     },
+	"custom/date": {
+    		"format": "󰸗 {}",
+		"interval": 3600,
+		"exec": "/home/loki/bin/waybar-date.sh"
+	},
+	"custom/power": {
+		"format": "⏻",
+		"on-click": "arcolinux-logout",
+        "tooltip": "false"
+	},
+	"clock": {
+		"format": "🕗 {:%H:%M}",
+        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        	"format-alt": " {:%Y-%m-%d}",
+            /* "today-format": "<b><u>{}</u></b>" */
+	},
+	"battery": {
+        	"states": {
+            		"warning": 30,
+            		"critical": 15,
+        	},
+            /* "exec": "~/.config/waybar/modules/arcobattery.py" */
+        	"format": "{icon} {capacity}%",
+        	"format-charging": " {capacity}%",
+        	"format-plugged": " {capacity}%",
+        	"format-alt": "{time} {icon}",
+        	"format-full": " {capacity}%",
+        	"format-icons": ["", "", "", "", ""]
+	},
+	"network": {
+        	"format-wifi": "  {essid}",
+        	"format-ethernet": " {ifname}: {ipaddr}/{cidr}",
+        	"format-linked": " {ifname} (No IP)",
+        	"format-disconnected": "󰤮 Disconnectd",
+        	"format-alt": "{ifname}: {ipaddr}/{cidr}"
+	},
+	"pulseaudio": {
+		"format": "{icon}  {volume}%",
+        	"format-muted": "󰖁 Muted",
+        "format-icons": {
+			"default": ["奄", "奔", "墳"]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol"
+   },
+	"cpu": {
+		"tooltip": false,
+		"format": " {}%"
+	},
+	"memory": {
+		"tooltip": false,
+		"format": " {}%"
+	}
+
+
+
+}
+
+
+
+

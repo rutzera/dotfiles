@@ -1,0 +1,100 @@
+{
+    "position": "top",
+    "height": 24,
+    "modules-left": ["sway/workspaces"],
+    "modules-right": ["network", "pulseaudio", "battery", "memory", "cpu", "temperature", "clock", "tray", "custom/power"],
+
+// Modules configuration
+
+	"sway/workspaces": {
+		"disable-scroll": false,
+		"all-outputs": true,
+		"format": "{icon}",
+        /* "format-icons": { */
+        /*     "default": "", */
+        /*     "urgent": "", */
+        /*     "focused": "" */
+        /*     } */
+     },
+	"custom/power": {
+		"format": "⏻",
+		"on-click": "arcolinux-logout",
+        "tooltip": "false"
+	},
+	"clock": {
+		"format": "🕗 {:%H:%M}",
+        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        	"format-alt": " {:%Y-%m-%d}",
+            /* "today-format": "<b><u>{}</u></b>" */
+	},
+	"battery": {
+        	"states": {
+            		"warning": 30,
+            		"critical": 15,
+        	},
+            /* "exec": "~/.config/waybar/modules/arcobattery.py" */
+        	"format": "{icon} {capacity}%",
+        	"format-charging": " {capacity}%",
+        	"format-plugged": " {capacity}%",
+        	"format-alt": "{time} {icon}",
+        	"format-full": "  {capacity}%",
+        	"format-icons": ["", "", "", "", ""]
+	},
+    "network": {
+        "format-wifi": "直 {essid}",
+        "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "睊 ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{signalStrength}%"
+	},
+    "pulseaudio": {
+    /* TODO: find out what to do with format-source */
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
+        "format-bluetooth-muted": "   {volume}% {format_source}",
+        "format-muted": "  ",
+        /* "format": "{icon} {volume}% {format_source}", */
+        /* "format-muted": "  {format_source}", */
+        /* "format-source": " ", */
+        /* "format-source-muted": " ", */
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+			"default": ["奄", "奔", "墳"]
+        },
+        "tooltip-format": "{desc}, {volume}%",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+        /* "on-click-middle": "pactl set-source-mute @DEFAULT_SOURCE@ toggle", */
+    },
+	"memory": {
+		"tooltip": false,
+		"format": " {}%"
+	},
+	"cpu": {
+		"tooltip": false,
+		"format": " {}%"
+	},
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": [" ", " ", " "],
+        "tooltip": false
+
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10,
+        "show-passive-items": true
+    }
+
+}
+
+
+
+
