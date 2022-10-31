@@ -116,11 +116,11 @@ fi
 # nim
 alias vim='nvim'
 #list
-alias ls='ls --color=auto'
-alias la='ls -a'
-alias ll='ls -la'
-alias l='ls'
-alias l.="ls -A | egrep '^\.'"
+alias ls='lsd'
+alias la='lsd -a'
+alias ll='lsd -la'
+alias l='lsd'
+alias l.="lsd -A | egrep '^\.'"
 
 #fix obvious typo's
 alias cd..='cd ..'

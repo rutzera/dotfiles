@@ -1,6 +1,15 @@
 #! /bin/sh
 
+# restart apps when reloading bspwm
+killall autostart
+"$HOME"/.config/bspwm/autostart.sh
+
+
+
+
 pgrep -x sxhkd > /dev/null || sxhkd &
+
+
 # run the xrandr command if an external monitor is connected to the
 # laptop.  This must be executed before the polybar command, so that
 # polybar can set the two separate bars properly.
@@ -9,22 +18,22 @@ if [ -x "$HOME"/.bin/dualmonitor_setup_laptop ];then
 fi
 
 # ##############################################################################
-# #                                AUTOSTART APPS                              #
-# ##############################################################################
-killall autostart.sh
-"$HOME"/.config/bspwm/autostart.sh
-picom --config "$HOME"/.config/picom/picom.conf &
-sh "$HOME"/.config/polybar/launch.sh
-# cursor fix
-xsetroot -cursor_name left_ptr
-# ##############################################################################
 # #                            GENERAL CONFIGURATION                           #
 # ##############################################################################
-bspc monitor eDP1 -d 1 2 3 4 5
-bspc monitor DP1-3 -d 6 7 8 9 0
+# bspc monitor eDP1 -d 1 2 3 4 5
+# bspc monitor DP1-3 -d 6 7 8 9 0
+workspaces() {
+	name=1
+	for monitor in `bspc query -M`; do
+		bspc monitor ${monitor} -n "$name" -d '1' '2' '3' '4' '5'
+		let name++
+	done
+}
+workspaces
+
 
 ## This creates and names desktops for multiple monitors.
-xworkspaces_multimonitor &
+# xworkspaces_multimonitor &
 
 # BSPWM configuration
 bspc config pointer_modifier mod4
@@ -66,14 +75,12 @@ bspc rule -a Thunderbird desktop=^4
 bspc rule -a Prospect Mail desktop=^4
 
 # Floating applications
-bspc rule -a Matlab state=floating
 bspc rule -a nm-applet state=floating
-bspc rule -a Arandr state=floating
-bspc rule -a Pavucontrol state=floating sticky=on
+bspc rule -a Arandr state=floating center=on follow=on rectangle=930x617+0+0
+bspc rule -a Pavucontrol state=floating center=on follow=on rectangle=930x617+0+0
 
 # Tiled applications
 bspc rule -a Gnome-disks state=tiled
-bspc rule -a Xfce4-settings-manager state=tiled
 bspc rule -a zathura state=tiled
 
 # polybar hidden when fullscreen for vlc, youtube, mpv ...

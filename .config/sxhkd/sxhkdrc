@@ -1,5 +1,6 @@
 # =================== WM INDEPENDENT KEYBINDINGS =====================
 # make sxhkd reload its configuration files:
+# TODO: notify not working (wrong notify app?)
 super + shift + r
     pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
 
@@ -12,14 +13,13 @@ super + alt + {q,r}
 super + {_,shift + }q
 	bspc node -{c,k}
 
-# =================== Application launcher =====================
-# launch terminal
+# =================== Terminal =====================
 super + Return
    alacritty -e zsh
-
-# program launcher
+   
+# =================== Application launcher =====================
 super + d
-    /home/adrian/.config/rofi/launchers/type-3/launcher.sh
+    $HOME/.config/rofi/launchers/type-3/launcher.sh
 
 # Tab menu
 alt + Tab
@@ -27,23 +27,28 @@ alt + Tab
 
 # rofi-powermenu
 super + x
-    /home/adrian/.config/rofi/powermenu/type-4/powermenu.sh
+    $HOME/.config/rofi/powermenu/type-4/powermenu.sh
     
 #Xkill
 super + shift + Escape
     xkill
 
-# launch software
+# =================== Applications =====================
 # super + f
     # termite -e ranger
-# super + {w,t,v}
-    # {brave,thunderbird,pavucontrol}
+    
+    
 super + {w,f,t,v}
-    {firefox,nemo,thunderbird,pavucontrol}
+    {firefox, \
+     nemo, \
+      thunderbird, \
+      pavucontrol}
 
-super + alt + {a,p}
-    {xfce4-appfinder, pamac-manager}
+super + alt + {a}
+    {xfce4-appfinder}
 
+
+# =================== TODO MENUES =====================
 # open wifi menu
 #super + i
 #    /home/adrian/.bin/rofi-wifi-menu.sh
@@ -77,12 +82,11 @@ Print + {_,shift,alt}
     flameshot {full -p,gui -p,full -d 5000 -p} /home/adrian/Pictures/Screenshots
 
 
-# =================== WINDOW CONTROL =====================
-# switch between keyboard laylouts (language)
+# =================== SWTICH KEYBOARD LAYOUTS =====================
 alt + shift + Tab
     {setxkbmap -model pc104 -layout ch -variant de_nodeadkeys, setxkbmap -model pc86 -layout us -variant intl}
-    /* {setxkbmap -model pc104 -layout ch -variant de_nodeadkeys, setxkbmap -model pc86 -layout us2 -variant intl2} */
 
+# =================== WINDOW CONTROL =====================
 ##### Move/Resize Window ######
 # Focus/swap windows by direction
 super + {_,shift + }{h,j,k,l}
@@ -105,6 +109,7 @@ super + alt + {h,j,k,l}
 # set the window state
 super + shift + {w,e}
     bspc node --state {tiled,floating}
+    
 # Toggle beetwen floating & tiled
 #super + space
 #    bspc node -t "~"{floating,tiled}
@@ -122,9 +127,15 @@ super + s
 	bspc node @/ --flip {vertical,horizontal}
 
 # rotate the nodes (split horizontally)
-super + r
-    bspc node @/ -R 90
+super + {_,shift + }r
+	bspc node @/ --rotate {90,-90}
 
+# Make split ratios equal
+super + 0
+	bspc node @/ --equalize
+
+
+  
 # send the newest marked node to the newest preselected node
 #super + y
 #	bspc node newest.marked.local -n newest.!automatic.local
@@ -159,7 +170,7 @@ super + ctrl + shift + space
 super + {_,shift + } + Tab
     bspc desktop -f {next,prev}
 
-# fovus to given desktop
+# focus to given desktop
 super + {1-9,0}
     bspc {desktop -f} '^{1-9,10}'
 
