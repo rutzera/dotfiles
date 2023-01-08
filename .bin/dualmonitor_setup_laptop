@@ -1,11 +1,11 @@
 #!/bin/bash
-
+notify-send 'Monitor' 'Reloaded setup'
 # need this to adjust placement of monitors if DP1-3 is connected
 my_laptop_external_monitor=$(xrandr --query | grep 'DP1-3')
 if [[ $my_laptop_external_monitor = *connected* ]]; then
     xrandr --output eDP1 --mode 2048x1152 --rotate normal --output DP1-3 --primary --mode 2560x1440 --rotate normal --left-of eDP1
 else
-    xrandr --output eDP1 --mode 2048x1152 --rotate nomral
+    xrandr --output eDP1 --mode 2048x1152 --rotate normal
 fi
 
 

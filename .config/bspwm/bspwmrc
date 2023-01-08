@@ -1,15 +1,5 @@
 #! /bin/sh
 
-# restart apps when reloading bspwm
-killall autostart
-"$HOME"/.config/bspwm/autostart.sh
-
-
-
-
-pgrep -x sxhkd > /dev/null || sxhkd &
-
-
 # run the xrandr command if an external monitor is connected to the
 # laptop.  This must be executed before the polybar command, so that
 # polybar can set the two separate bars properly.
@@ -17,26 +7,20 @@ if [ -x "$HOME"/.bin/dualmonitor_setup_laptop ];then
     dualmonitor_setup_laptop
 fi
 
+# restart apps when reloading bspwm
+killall autostart
+"$HOME"/.config/bspwm/autostart.sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
 # ##############################################################################
 # #                            GENERAL CONFIGURATION                           #
 # ##############################################################################
-# bspc monitor eDP1 -d 1 2 3 4 5
-# bspc monitor DP1-3 -d 6 7 8 9 0
-workspaces() {
-	name=1
-	for monitor in `bspc query -M`; do
-		bspc monitor ${monitor} -n "$name" -d '1' '2' '3' '4' '5'
-		let name++
-	done
-}
-workspaces
-
 
 ## This creates and names desktops for multiple monitors.
 # xworkspaces_multimonitor &
 
 # BSPWM configuration
-bspc config pointer_modifier mod4
+bspc config pointer_m qodifier mod4
 bspc config pointer_action1 move
 bspc config pointer_action2 resize_side
 bspc config pointer_action3 resize_corner
@@ -80,14 +64,7 @@ bspc rule -a Arandr state=floating center=on follow=on rectangle=930x617+0+0
 bspc rule -a Pavucontrol state=floating center=on follow=on rectangle=930x617+0+0
 
 # Tiled applications
-bspc rule -a Gnome-disks state=tiled
 bspc rule -a zathura state=tiled
-
-# polybar hidden when fullscreen for vlc, youtube, mpv ...
-# find out the name of your monitor with xrandr
-#xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DP-1)
-#xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI1)
-#xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI2)
 
 # rename WM to not have problems with java programs (e.g. matlab)
 wmname LG3D

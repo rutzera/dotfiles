@@ -32,7 +32,6 @@ super + x
 #Xkill
 super + shift + Escape
     xkill
-
 # =================== Applications =====================
 # super + f
     # termite -e ranger
@@ -47,6 +46,17 @@ super + {w,f,t,v}
 super + alt + {a}
     {xfce4-appfinder}
 
+# toggle eww bar
+super + shift + b
+    $HOME/.bin/tgl_eww_bar
+
+# Toggle picom
+super + shift + p
+    [[ `pgrep -c picom` -eq 0 ]] && picom || killall picom
+
+# dual screen monitor
+super + shift + m
+  $HOME/.bin/dualmonitor_setup_laptop
 
 # =================== TODO MENUES =====================
 # open wifi menu
@@ -115,6 +125,7 @@ super + shift + {w,e}
 #    bspc node -t "~"{floating,tiled}
 
 # toggle fullscreen/non-fullscreen switch
+# TODO: toggle bar with fullscreen or some sort of monocle mode with padding
 super + shift + f
     bspc node -t "~"{fullscreen,tiled}
 

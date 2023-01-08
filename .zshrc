@@ -158,7 +158,7 @@ alias merge="xrdb -merge ~/.Xresources"
 # Aliases for software managment
 # pacman or pm
 alias pacman='sudo pacman --color auto'
-alias update='sudo pacman -Syu'
+alias update='sudo pacman -Syu & sudo yay -Syu'
 
 # yay as aur helper - updates everything
 alias pksyua="yay -Syu --noconfirm"
@@ -247,6 +247,10 @@ alias probe="sudo -E hw-probe -all -upload"
 alias ssn="sudo shutdown now"
 alias sr="sudo reboot"
 
+# onedrive
+alias onedrive_shared="onedrive --synchronize --sync-shared-folders --verbose"
+alias ondedrive_sync="onedrive --synchronize --local-first"
+
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
 ex ()
@@ -303,14 +307,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-# gcloud shell command completion
-# source /home/adrian/installs/google-cloud-sdk/pkg/google-cloud-sdk/opt/google-cloud-sdk/completion.bash.inc
-# gcloud google cloud sdk command line tools
-# source /home/adrian/installs/google-cloud-sdk/pkg/google-cloud-sdk/opt/google-cloud-sdk/path.bash.inc
-
-# old
-# # The next line updates PATH for the Google Cloud SDK.
-# if [ -f '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/path.zsh.inc' ]; then . '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/path.zsh.inc'; fi
-# # The next line enables shell command completion for gcloud.
-# if [ -f '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/adrian/SynologyDrive/Schule/ACLS/MasterThesis/google-cloud-sdk/completion.zsh.inc'; fi
