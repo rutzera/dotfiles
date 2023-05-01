@@ -21,11 +21,9 @@ export VISUAL=/usr/bin/nvim
 # starhip pormpt
 eval "$(starship init zsh)"
 
-# plugins
-source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # alias general
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 alias ..="cd .."
 alias ls='ls -la --color=auto'
 alias grep="grep --color=auto"
@@ -49,4 +47,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
