@@ -5,6 +5,9 @@ SAVEHIST=1000
 
 # some keybindings, as 'del'-key outputs ~
 bindkey '^[[3~' delete-char
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -17,6 +20,7 @@ compinit
 # default editor
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
+export TERM=alacritty
 
 # starhip pormpt
 eval "$(starship init zsh)"
@@ -32,6 +36,7 @@ alias myip='curl http://ipecho.net/plain; echo'
 alias vim="nvim"
 # alias suffix: e.g. open txt files with nvim
 alias -s txt=nvim
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
