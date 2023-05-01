@@ -1,0 +1,229 @@
+# =================== WM INDEPENDENT KEYBINDINGS =====================
+# make sxhkd reload its configuration files:
+# TODO: notify not working (wrong notify app?)
+super + shift + r
+    pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
+
+# =================== BSPWM Hotkeys =====================
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }q
+	bspc node -{c,k}
+
+# =================== Terminal =====================
+super + Return
+   alacritty -e zsh
+   
+# =================== Application launcher =====================
+super + d
+    $HOME/.config/rofi/launchers/type-3/launcher.sh
+
+# Tab menu
+alt + Tab
+    rofi -show window
+
+# rofi-powermenu
+super + x
+    $HOME/.config/rofi/powermenu/type-4/powermenu.sh
+    
+#Xkill
+super + shift + Escape
+    xkill
+# =================== Applications =====================
+# super + f
+    # termite -e ranger
+    
+    
+super + {w,f,t,v}
+    {firefox, \
+     nemo, \
+      thunderbird, \
+      pavucontrol}
+
+super + alt + {a}
+    {xfce4-appfinder}
+
+# toggle eww bar
+super + shift + b
+    $HOME/.bin/tgl_eww_bar
+
+# Toggle picom
+super + shift + p
+    [[ `pgrep -c picom` -eq 0 ]] && picom || killall picom
+
+# dual screen monitor
+super + shift + m
+  $HOME/.bin/dualmonitor_setup_laptop
+
+# =================== TODO MENUES =====================
+# open wifi menu
+#super + i
+#    /home/adrian/.bin/rofi-wifi-menu.sh
+
+# open bluetooth menu
+#super + b
+#    /home/adrian/.bin/rofi-bluetooth
+
+# open powermenu
+#super + p
+#    /home/adrian/.bin/rofi-powermenu
+
+# open mpd menu
+#super + m
+#    /home/adrian/.bin/rofi-mpc
+
+# lunch lock screen
+#super + shift + l
+#    betterlockscreen -l blur
+
+# turn on redshift
+#super + shift + o
+#    redshift -t 6500:4500 -l  31.276433:30.009311  &
+
+# turn off redshift
+#super + shift + k
+#    pkill redshift
+
+# full screenshot, selection area, full in 5 seconds
+Print + {_,shift,alt}
+    flameshot {full -p,gui -p,full -d 5000 -p} /home/adrian/Pictures/Screenshots
+
+
+# =================== SWTICH KEYBOARD LAYOUTS =====================
+alt + shift + Tab
+    {setxkbmap -model pc104 -layout ch -variant de_nodeadkeys, setxkbmap -model pc86 -layout us -variant intl}
+
+# =================== WINDOW CONTROL =====================
+##### Move/Resize Window ######
+# Focus/swap windows by direction
+super + {_,shift + }{h,j,k,l}
+    bspc node -{f,s} {west,south,north,east}
+
+# # expand a window by moving one of its side outward
+# super + alt + {h,j,k,l}
+# 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+# # contract a window by moving one of its side inward
+# super + alt + shift + {h,j,k,l}
+# 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# Expand/contract a window by moving one of its side outward/inward
+super + alt + {h,j,k,l}
+    STEP=20; SELECTION={1,2,3,4}; \
+    bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
+    bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
+
+##### Set Windowstate ######
+# set the window state
+super + shift + {w,e}
+    bspc node --state {tiled,floating}
+    
+# Toggle beetwen floating & tiled
+#super + space
+#    bspc node -t "~"{floating,tiled}
+
+# toggle fullscreen/non-fullscreen switch
+# TODO: toggle bar with fullscreen or some sort of monocle mode with padding
+super + shift + f
+    bspc node -t "~"{fullscreen,tiled}
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest.window
+
+# Flip layout vertically/horizontally
+super + s
+	bspc node @/ --flip {vertical,horizontal}
+
+# rotate the nodes (split horizontally)
+super + {_,shift + }r
+	bspc node @/ --rotate {90,-90}
+
+# Make split ratios equal
+super + 0
+	bspc node @/ --equalize
+
+
+  
+# send the newest marked node to the newest preselected node
+#super + y
+#	bspc node newest.marked.local -n newest.!automatic.local
+
+
+##### PRESELECTION ######
+# preselect split direction and set default split ratio
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}; \
+	echo "0.5" > /tmp/BSPWM_RATIO; \
+	bspc node -o 0.5
+
+# preselect split ratio
+super + ctrl + shift + {h,j,k,l}
+	current="$(echo $(cat /tmp/BSPWM_RATIO) {-,+,-,+} 0.1 | bc -l)"; \
+	[ $(echo "$current <= 0" | bc -l) -eq 1 ] && current=0.1; \
+	[ $(echo "$current >= 1" | bc -l) -eq 1 ] && current=0.9; \
+	bspc node -o "$current"; \
+	echo "$current" > /tmp/BSPWM_RATIO
+
+# cancel preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+
+# =================== Desktop Actions =====================
+# move forward/backword desktops
+super + {_,shift + } + Tab
+    bspc desktop -f {next,prev}
+
+# focus to given desktop
+super + {1-9,0}
+    bspc {desktop -f} '^{1-9,10}'
+
+# send to the given desktop and follow
+super + shift + {1-9,0}
+    bspc node -d '^{1-9,10}' --follow
+
+# send Program to given desktop
+alt + {shift +}{1-9,0}
+    bspc node -d '^{1-9,10}'
+
+# focus the last node/desktop
+#super + {grave,Tab}
+#    bspc {node,desktop} -f last
+
+# =================== Monitor Actions =====================
+# focus the next/previous monitor
+super + bracket{left,right}
+	bspc monitor --focus {next,prev}
+
+
+# =================== System =====================
+# increase/decrease volume by 5%
+XF86Audio{Raise,Lower}Volume
+   amixer -q set Master {5%+,5%-}
+
+# toggle volume mute
+XF86AudioMute
+    amixer -q set Master toggle
+
+# brightness keys
+XF86MonBrightness{Up,Down}
+	xbacklight -{inc,dec} 5
+
+# next, previous, play-pause toggle
+XF86Audio{Next,Prev,Play}
+    playerctl {next,previous,play-pause}
+
+# next, previous, play-pause toggle for mpd
+ctrl + XF86Audio{Next,Prev,Play,Play}
+    mpc {next,prev,pause,play}  && notify-send "  " "$(mpc current)"
+
+# stop ncmpcpp
+#super + ctrl + s
+#    mpc stop

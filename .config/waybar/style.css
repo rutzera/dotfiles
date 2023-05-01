@@ -1,0 +1,136 @@
+*
+{
+    border: none;
+    border-radius: 0;
+    font-family: mononoki Nerd Font;
+    font-size: 14px;
+    min-height: 0;
+}
+
+/* root { */
+  /* red: #1E1E28; */
+/*   --foreground: #0xabb2bf; */
+/*   --black:   #0x1e2127; */
+/*   --red:     #0xe06c75; */
+/*   --green:   #0x98c379; */
+/*   --yellow:  #0xd19a66; */
+/*   --blue:    #0x61afef; */
+/*   --magenta: #0xc678dd; */
+/*   --cyan:    #0x56b6c2; */
+/*   --white:   #0xabb2bf; */
+/* } */
+
+window#waybar {
+    /* background: var(background)); */
+    /* background: #1a1b26; */
+    background: #1E1E28;
+    color: #DADAE8;
+    /* background: transparent; */
+    /* color: white; */
+}
+
+tooltip {
+	background: #24283b;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #a4b9ef;
+	}
+
+#workspaces {
+	background-color: #24283b;
+	margin: 5px;
+	margin-left: 10px;
+	border-radius: 20px;
+}
+#workspaces button {
+    padding: 5px 10px;
+    color: #c0caf5;
+}
+
+#workspaces button.focused {
+    color: #24283b;
+    background-color: #7aa2f7;
+    border-radius: 20px;
+}
+
+#workspaces button:hover {
+	background-color: #7dcfff;
+	color: #24283b;
+	border-radius: 20px;
+}
+
+#workspaces button.urgent {
+    color: #e0af68;
+}
+
+#clock, #battery, #pulseaudio, #network, #cpu, #memory, #temperature {
+	background-color: #24283b;
+	padding: 5px 15px;
+	margin: 5px 0px;
+}
+
+#custom-power {
+	color: #24283b;
+	background-color: #5a4a78;
+	/* border-radius: 15px; */
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	padding: 5px 10px;
+  border-radius: 0px 15px 15px 0px;
+}
+
+#clock {
+    color: #F5F5F5;
+}
+
+#battery {
+    color: #9ece6a;
+}
+
+#battery.charging {
+    color: #9ece6a;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #f7768e;
+    color: #24283b;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#network {
+	color: #f7768e;
+	border-radius: 15px 0px 0px 15px;
+}
+
+#pulseaudio {
+	color: #e0af68;
+}
+
+#memory {
+    color: #b48ead;
+	  /* border-radius: 0px 15px 15px 0px; */
+    /* margin-right: 10px; */
+}
+
+#cpu {
+    color: #7aa2f7;
+	  /* border-radius: 10px 0px 0px 10px; */
+    /* margin-right: 10px; */
+}
+
+#temperature {
+    color: #9aa5ce;
+}
+
+#temperature.critical {
+    color: #f7768e;
+}
+
+#tray {
+	background-color: #24283b;
+	padding: 5px 10px;
+	margin: 5px 0px;
+}
